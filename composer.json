@@ -1,4 +1,13 @@
 {
+    "name": "smolevich/temporal-php-workflow",
+    "description": "Temporal Demo PHP(without any frameworks) Workflow",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Smolevich",
+            "email": "smolevich@gmail.com"
+        }
+    ],
     "require": {
         "temporal/sdk": "^2.12",
         "spiral/roadrunner-worker": "^3.6",
