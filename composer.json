@@ -1,0 +1,12 @@
+{
+    "require": {
+        "temporal/sdk": "^2.12",
+        "spiral/roadrunner-worker": "^3.6",
+        "spiral/goridge": "^4.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}

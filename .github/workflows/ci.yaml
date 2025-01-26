@@ -1,0 +1,22 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Validate composer.json
+      run: composer validate
+
+    - name: Check PHP syntax in src directory
+      run: find src -name "*.php" -print0 | xargs -0 -n1 php -l
+
+    - name: Check PHP syntax in root PHP files
+      run: |
+        php -l worker.php
+        php -l start_wf.php
