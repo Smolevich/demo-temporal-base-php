@@ -9,24 +9,18 @@ server:
     TEMPORAL_ADDRESS: ${TEMPORAL_ADDRESS}
     TEMPORAL_NAMESPACE: ${TEMPORAL_NAMESPACE}
 
-http:
-  address: 127.0.0.1:10085
-  pool:
-    num_workers: 2
-    allocate_timeout: 60s
-    destroy_timeout: 1s
-    dynamic_allocator:
-      max_workers: 25
-      spawn_rate: 10
-      idle_timeout: 10s
 # Add Temporal configuration
 temporal:
   address: ${TEMPORAL_ADDRESS}
-  activities:
+  namespace: ${TEMPORAL_NAMESPACE}
+  pool:
+    command: "php worker.php"
     num_workers: 2
-  command: "php worker.php"  
-  codec: proto
-
+    max_jobs: 100
+    dynamic_allocator:
+    max_workers: 25
+    spawn_rate: 10
+    idle_timeout: 10s
 logs:
   mode: development
   level: debug
