@@ -37,10 +37,3 @@ logs:
 status:
   address: 0.0.0.0:2114
 
-# Добавляем конфигурацию для воркеров
-workers:
-  command: "php worker.php"
-  pool:
-    num_workers: 1
-    allocate_timeout: 60s
-    destroy_timeout: 60s
