@@ -85,6 +85,8 @@ services:
     build: ./file-server
     ports:
       - "5001:5000"
+    volumes:
+      - ./file-server/data:/app/data
     networks:
       - temporal-network
 
