@@ -13,14 +13,22 @@ server:
 temporal:
   address: ${TEMPORAL_ADDRESS}
   namespace: ${TEMPORAL_NAMESPACE}
-  pool:
+  activities:
+    # Debug mode for the pool. In this mode, pool will not pre-allocate the worker. Worker (only 1, num_workers ignored) will be allocated right after the request arrived.
+    #
+    # Default: false
+    debug: false
+
+    # Override server's command
+    #
+    # Default: empty
     command: "php worker.php"
     num_workers: 2
     max_jobs: 100
     dynamic_allocator:
-    max_workers: 25
-    spawn_rate: 10
-    idle_timeout: 10s
+      max_workers: 25
+      spawn_rate: 10
+      idle_timeout: 10s
 logs:
   mode: development
   level: debug

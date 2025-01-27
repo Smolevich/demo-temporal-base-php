@@ -34,7 +34,20 @@ class FileDownloadActivity
         }
 
         curl_exec($ch);
+
+        // Check for HTTP response code
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        if ($httpCode !== 200) {
+            fclose($fp);
+            curl_close($ch);
+            unlink($tempPath); // Remove the partial file
+            throw new \Exception("Download error: HTTP status code $httpCode");
+        }
+
         if (curl_errno($ch)) {
+            fclose($fp);
+            curl_close($ch);
+            unlink($tempPath); // Remove the partial file
             throw new \Exception("Download error: " . curl_error($ch));
         }
 

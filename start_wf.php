@@ -9,7 +9,7 @@ use Temporal\Client\WorkflowOptions;
 use App\Workflow\FileDownloadWorkflow;
 use Temporal\Client\GRPC\ServiceClient;
 
-// Создаем GRPC клиент
+// Create GRPC client
 $serviceClient = ServiceClient::create('temporal:7233');
 
 // Create Temporal client
@@ -26,13 +26,13 @@ $workflow = $workflowClient->newWorkflowStub(
     $workflowOptions
 );
 
-// URL для скачивания
+// URL for downloading
 $url = "http://file-server:5000/download";
 
-// Задаем путь для сохранения файла
-$destinationPath = "copy_largefile.csv";  // Укажите путь, где вы хотите сохранить файл
+// Set the path for saving the file
+$destinationPath = "copy_largefile.csv";  // Specify the path where you want to save the file
 
-// Start workflow asynchronously с передачей URL и destinationPath
-$run = $workflowClient->start($workflow, 'download', $url, $destinationPath);
+// Start workflow asynchronously with URL and destinationPath
+$run = $workflowClient->start($workflow, $url, $destinationPath);
 
 echo "Started workflow {$run->getExecution()->getID()}\n";
